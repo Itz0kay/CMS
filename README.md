@@ -12,7 +12,7 @@ TO RUN THIS PROJECT SUCCESSFULLY FOLLOW THIS STEPS
   - python manage.py migrate
   
 SET UP IS DONE NOW YOU CAN RUN FOLLOWING COMMAND TO START YOUR SERVER
-  python manage.py runserver
+  - python manage.py runserver
 
 Following are the link for better navigation of the project:
 
