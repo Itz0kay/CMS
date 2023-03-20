@@ -19,6 +19,7 @@ def register(request):
         if serials.is_valid():
             serials.save()
             return Response(serials.data, status=status.HTTP_201_CREATED)
+        return Response(serials.errors, status=status.HTTP_400_BAD_REQUEST)
 
     else:
         pass
