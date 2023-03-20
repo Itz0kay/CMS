@@ -8,8 +8,8 @@ from rest_framework.exceptions import AuthenticationFailed
 
 from Accounts.models import *
 from Accounts.serializer import *
-import os
 
+# Register view for the registering user
 @api_view(['GET', 'POST'],)
 @permission_classes((permissions.AllowAny,))
 def register(request):
@@ -27,9 +27,11 @@ def register(request):
 @permission_classes((permissions.AllowAny,))
 def login(request):
     if request.method == 'POST':
+        # Getting email and password 
         email = request.data['email']
         password = request.data['password']
 
+        # Authenticating user
         user = User.objects.filter(email=email).first()
         
         if user is None:
@@ -47,6 +49,8 @@ def login(request):
 
         response = Response()
 
+        # Setting user cookie for user login
+
         response.set_cookie(key='jwt', value=token, max_age=60*60*60*24)
         response.data = {'jwt':token}
 
@@ -61,7 +65,7 @@ def login(request):
 def logout(request):
     if request.method == 'GET':
         response = Response()
-        response.delete_cookie('jwt')
+        response.delete_cookie('jwt') # Deleting set cookie
         response.data = {
             'message': 'success'
         }
